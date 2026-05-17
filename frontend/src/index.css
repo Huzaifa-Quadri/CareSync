@@ -1,0 +1,333 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Manrope:wght@200..800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+/* ============================================================
+   THEME TOKENS — Tailwind v4 @theme generates utility classes
+   ============================================================ */
+@theme {
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-canvas: var(--bg-base);
+  --color-surface: var(--bg-surface);
+  --color-elevated: var(--bg-elevated);
+  --color-ink: var(--fg-primary);
+  --color-muted: var(--fg-muted);
+  --color-accent: var(--accent-1);
+  --color-accent2: var(--accent-2);
+  --color-accent3: var(--accent-3);
+  --color-line: var(--border);
+  --color-ring: var(--ring);
+}
+
+/* ============================================================
+   THEMES — palettes mapped to CSS vars
+   ============================================================ */
+:root,
+[data-theme="light"] {
+  --bg-base: #F7F5EF;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #EBE8DD;
+  --fg-primary: #0A0A0A;
+  --fg-muted: #3F3F3F;
+  --accent-1: #C9874A;
+  --accent-2: #6B8A5A;
+  --accent-3: #5A3F75;
+  --border: rgba(10, 10, 10, 0.14);
+  --ring: #0A0A0A;
+
+  --accent-ink: #FFFFFF;
+  --accent-ink-muted: rgba(255, 255, 255, 0.78);
+  --accent2-ink: #FFFFFF;
+  --accent2-ink-muted: rgba(255, 255, 255, 0.78);
+  --accent3-ink: #FFFFFF;
+  --accent3-ink-muted: rgba(255, 255, 255, 0.78);
+  --ink-canvas-muted: rgba(247, 245, 239, 0.72);
+}
+
+[data-theme="dark"] {
+  --bg-base: #0B1020;
+  --bg-surface: #161B30;
+  --bg-elevated: #232943;
+  --fg-primary: #F5F2E8;
+  --fg-muted: #C5CAE0;
+  --accent-1: #2DD4E6;
+  --accent-2: #FF5A5A;
+  --accent-3: #A7E248;
+  --border: rgba(245, 242, 232, 0.18);
+  --ring: #2DD4E6;
+
+  --accent-ink: #0B1020;
+  --accent-ink-muted: rgba(11, 16, 32, 0.72);
+  --accent2-ink: #FFFFFF;
+  --accent2-ink-muted: rgba(255, 255, 255, 0.78);
+  --accent3-ink: #0B1020;
+  --accent3-ink-muted: rgba(11, 16, 32, 0.72);
+  --ink-canvas-muted: rgba(245, 242, 232, 0.72);
+}
+
+[data-theme="ocean"] {
+  --bg-base: #E6F3F6;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #C9E1E7;
+  --fg-primary: #0A2540;
+  --fg-muted: #1F3F5C;
+  --accent-1: #0A7D82;
+  --accent-2: #D9A85F;
+  --accent-3: #B83C32;
+  --border: rgba(10, 37, 64, 0.18);
+  --ring: #0A7D82;
+
+  --accent-ink: #FFFFFF;
+  --accent-ink-muted: rgba(255, 255, 255, 0.78);
+  --accent2-ink: #2A1810;
+  --accent2-ink-muted: rgba(42, 24, 16, 0.72);
+  --accent3-ink: #FFFFFF;
+  --accent3-ink-muted: rgba(255, 255, 255, 0.78);
+  --ink-canvas-muted: rgba(230, 243, 246, 0.72);
+}
+
+[data-theme="sunset"] {
+  --bg-base: #FFF1DE;
+  --bg-surface: #FFFAF0;
+  --bg-elevated: #F3D5B0;
+  --fg-primary: #2A1810;
+  --fg-muted: #4A2E1F;
+  --accent-1: #B84A1F;
+  --accent-2: #8F4848;
+  --accent-3: #C68229;
+  --border: rgba(42, 24, 16, 0.18);
+  --ring: #B84A1F;
+
+  --accent-ink: #FFFFFF;
+  --accent-ink-muted: rgba(255, 255, 255, 0.78);
+  --accent2-ink: #FFFFFF;
+  --accent2-ink-muted: rgba(255, 255, 255, 0.78);
+  --accent3-ink: #FFFFFF;
+  --accent3-ink-muted: rgba(255, 255, 255, 0.78);
+  --ink-canvas-muted: rgba(255, 241, 222, 0.72);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+html, body {
+  background-color: var(--bg-base);
+  color: var(--fg-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* Smooth theme transitions */
+html, body, .bento-tile, button, a, input, textarea, select, nav, aside, header, footer, section, div {
+  transition: background-color 320ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 320ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+.font-display { font-family: var(--font-display); font-feature-settings: "ss01"; }
+.font-mono { font-family: var(--font-mono); }
+
+.bento-tile {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-tile-elevated {
+  background-color: var(--bg-elevated);
+}
+
+.glow-accent {
+  box-shadow: 0 20px 60px -25px var(--accent-1);
+}
+.glow-accent2 {
+  box-shadow: 0 20px 60px -25px var(--accent-2);
+}
+.glow-accent3 {
+  box-shadow: 0 20px 60px -25px var(--accent-3);
+}
+
+.text-accent-ink { color: var(--accent-ink); }
+.text-accent2-ink { color: var(--accent2-ink); }
+.text-accent3-ink { color: var(--accent3-ink); }
+
+/* ============================================================
+   EXPLICIT THEME UTILITIES — guarantees bg/text/border classes
+   work even when Tailwind v4 @theme var-chain resolution skips them.
+   ============================================================ */
+.bg-canvas { background-color: var(--bg-base); }
+.bg-surface { background-color: var(--bg-surface); }
+.bg-elevated { background-color: var(--bg-elevated); }
+.bg-ink { background-color: var(--fg-primary); }
+.bg-accent { background-color: var(--accent-1); }
+.bg-accent2 { background-color: var(--accent-2); }
+.bg-accent3 { background-color: var(--accent-3); }
+
+.text-canvas { color: var(--bg-base); }
+.text-surface { color: var(--bg-surface); }
+.text-ink { color: var(--fg-primary); }
+.text-muted { color: var(--fg-muted); }
+.text-accent { color: var(--accent-1); }
+.text-accent2 { color: var(--accent-2); }
+.text-accent3 { color: var(--accent-3); }
+
+.border-line { border-color: var(--border); }
+.border-ink { border-color: var(--fg-primary); }
+.border-accent { border-color: var(--accent-1); }
+.border-accent2 { border-color: var(--accent-2); }
+.border-accent3 { border-color: var(--accent-3); }
+
+.ring-ring { --tw-ring-color: var(--ring); }
+.placeholder-muted::placeholder { color: var(--fg-muted); }
+
+/* Translucent variants used in some tiles */
+.bg-canvas\/20 { background-color: color-mix(in srgb, var(--bg-base) 20%, transparent); }
+.bg-canvas\/30 { background-color: color-mix(in srgb, var(--bg-base) 30%, transparent); }
+.bg-canvas\/50 { background-color: color-mix(in srgb, var(--bg-base) 50%, transparent); }
+.bg-canvas\/80 { background-color: color-mix(in srgb, var(--bg-base) 80%, transparent); }
+.bg-surface\/50 { background-color: color-mix(in srgb, var(--bg-surface) 50%, transparent); }
+.bg-surface\/70 { background-color: color-mix(in srgb, var(--bg-surface) 70%, transparent); }
+.bg-surface\/80 { background-color: color-mix(in srgb, var(--bg-surface) 80%, transparent); }
+.bg-ink\/5 { background-color: color-mix(in srgb, var(--fg-primary) 5%, transparent); }
+.bg-ink\/10 { background-color: color-mix(in srgb, var(--fg-primary) 10%, transparent); }
+.bg-ink\/20 { background-color: color-mix(in srgb, var(--fg-primary) 20%, transparent); }
+.bg-elevated\/50 { background-color: color-mix(in srgb, var(--bg-elevated) 50%, transparent); }
+.bg-accent\/10 { background-color: color-mix(in srgb, var(--accent-1) 10%, transparent); }
+.bg-accent\/20 { background-color: color-mix(in srgb, var(--accent-1) 20%, transparent); }
+.bg-accent2\/10 { background-color: color-mix(in srgb, var(--accent-2) 10%, transparent); }
+.bg-accent2\/20 { background-color: color-mix(in srgb, var(--accent-2) 20%, transparent); }
+.bg-accent3\/10 { background-color: color-mix(in srgb, var(--accent-3) 10%, transparent); }
+.bg-accent3\/20 { background-color: color-mix(in srgb, var(--accent-3) 20%, transparent); }
+
+/* ============================================================
+   CONTEXTUAL TEXT — when nested inside accent / ink backgrounds,
+   .text-muted, .text-ink, opacity-80 labels stay readable.
+   ============================================================ */
+.bg-accent .text-muted,
+.bg-accent .text-ink,
+.bg-accent [class*="text-muted"] { color: var(--accent-ink-muted); }
+.bg-accent2 .text-muted,
+.bg-accent2 .text-ink,
+.bg-accent2 [class*="text-muted"] { color: var(--accent2-ink-muted); }
+.bg-accent3 .text-muted,
+.bg-accent3 .text-ink,
+.bg-accent3 [class*="text-muted"] { color: var(--accent3-ink-muted); }
+.bg-ink .text-muted,
+.bg-ink .text-ink,
+.bg-ink [class*="text-muted"] { color: var(--ink-canvas-muted); }
+
+/* Borders on accent tiles use translucent ink for visibility */
+.bg-accent .border-line,
+.bg-accent2 .border-line,
+.bg-accent3 .border-line,
+.bg-ink .border-line { border-color: color-mix(in srgb, currentColor 25%, transparent); }
+
+/* Tabular numbers for stats */
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Hide scrollbars */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -60px) scale(1.15); }
+  66% { transform: translate(-30px, 30px) scale(0.9); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 currentColor; }
+  50% { opacity: 0.7; transform: scale(1.15); box-shadow: 0 0 0 6px rgba(0,0,0,0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -800px 0; }
+  100% { background-position: 800px 0; }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes gradient-sweep {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes draw-stroke {
+  to { stroke-dashoffset: 0; }
+}
+
+.animate-blob { animation: blob 22s infinite ease-in-out; }
+.animate-marquee { animation: marquee 40s linear infinite; }
+.animate-pulse-dot { animation: pulse-dot 2.4s infinite ease-in-out; }
+.animate-float-slow { animation: float-slow 6s infinite ease-in-out; }
+.animate-spin-slow { animation: spin-slow 22s linear infinite; }
+.animate-gradient-sweep {
+  background-size: 200% 200%;
+  animation: gradient-sweep 8s ease infinite;
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  background-size: 800px 100%;
+  animation: shimmer 1.8s infinite;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--fg-muted); }
+
+/* ============================================================
+   FORM RESET
+   ============================================================ */
+input, textarea, select {
+  background-color: transparent;
+  color: inherit;
+  outline: none;
+}
+input::placeholder, textarea::placeholder { color: currentColor; opacity: 0.55; }
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
