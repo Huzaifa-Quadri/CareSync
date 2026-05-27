@@ -123,7 +123,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => navigate("/login")}
-              className="hidden md:inline-flex items-center rounded-full bg-ink text-canvas px-5 py-2 text-sm font-medium"
+              className="hidden md:inline-flex items-center rounded-full bg-ink text-canvas px-5 py-2 text-sm font-medium hover:opacity-85 transition-opacity"
             >
               Sign in
             </motion.button>

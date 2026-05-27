@@ -103,16 +103,16 @@ const Appointments = () => {
           <button
             key={f.id}
             onClick={() => setFilter(f.id)}
-            className="relative rounded-full border border-line bg-surface px-4 py-2 text-sm"
+            className={`relative rounded-full border px-4 py-2 text-sm transition-colors ${filter === f.id ? "border-transparent" : "border-line hover:bg-elevated"}`}
           >
             {filter === f.id && (
               <motion.span
                 layoutId="appt-filter"
                 transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                className="absolute inset-0 -z-10 rounded-full bg-ink"
+                className="absolute inset-0 rounded-full bg-ink"
               />
             )}
-            <span className={filter === f.id ? "text-canvas font-medium" : "text-ink"}>{f.label}</span>
+            <span className={`relative z-10 ${filter === f.id ? "text-canvas font-medium" : "text-ink"}`}>{f.label}</span>
           </button>
         ))}
       </div>

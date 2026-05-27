@@ -54,7 +54,7 @@ const ConfirmModal = ({
               <motion.button
                 whileTap={{ scale: 0.97 }}
                 onClick={onConfirm}
-                className={`rounded-full px-5 py-2.5 text-sm font-medium ${
+                className={`rounded-full px-5 py-2.5 text-sm font-medium hover:opacity-85 transition-opacity ${
                   isDestructive ? "bg-accent2 text-accent2-ink" : "bg-ink text-canvas"
                 }`}
               >

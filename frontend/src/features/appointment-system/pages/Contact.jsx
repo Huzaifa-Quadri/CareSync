@@ -83,7 +83,7 @@ const Contact = () => {
             <p className="font-display text-2xl mt-1 leading-tight">
               Build the future of healthcare with us.
             </p>
-            <button className="mt-4 inline-flex items-center gap-2 rounded-full bg-canvas text-ink px-5 py-2 text-sm font-medium">
+            <button className="mt-4 inline-flex items-center gap-2 rounded-full bg-canvas text-ink px-5 py-2 text-sm font-medium hover:opacity-85 transition-opacity">
               Explore jobs <ArrowUpRight size={14} />
             </button>
           </div>

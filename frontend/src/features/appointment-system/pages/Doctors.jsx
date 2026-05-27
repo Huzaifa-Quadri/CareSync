@@ -69,16 +69,16 @@ const Doctors = () => {
         >
           <button
             onClick={() => navigate("/doctors")}
-            className="relative px-4 py-2.5 text-left text-sm rounded-2xl bg-surface border border-line"
+            className={`relative px-4 py-2.5 text-left text-sm rounded-2xl border transition-colors ${!slug ? "border-transparent" : "border-line hover:bg-elevated"}`}
           >
             {!slug && (
               <motion.span
                 layoutId="filter-active"
                 transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                className="absolute inset-0 -z-10 rounded-2xl bg-accent"
+                className="absolute inset-0 rounded-2xl bg-accent"
               />
             )}
-            <span className={!slug ? "text-accent-ink font-medium" : "text-ink"}>All</span>
+            <span className={`relative z-10 ${!slug ? "text-accent-ink font-medium" : "text-ink"}`}>All</span>
           </button>
           {specialityList.map((s) => (
             <button
@@ -87,16 +87,16 @@ const Doctors = () => {
                 navigate(slug === s.slug ? "/doctors" : `/doctors/${s.slug}`);
                 setShowFilter(false);
               }}
-              className="relative px-4 py-2.5 text-left text-sm rounded-2xl bg-surface border border-line"
+              className={`relative px-4 py-2.5 text-left text-sm rounded-2xl border transition-colors ${slug === s.slug ? "border-transparent" : "border-line hover:bg-elevated"}`}
             >
               {slug === s.slug && (
                 <motion.span
                   layoutId="filter-active"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  className="absolute inset-0 -z-10 rounded-2xl bg-accent"
+                  className="absolute inset-0 rounded-2xl bg-accent"
                 />
               )}
-              <span className={slug === s.slug ? "text-accent-ink font-medium" : "text-ink"}>
+              <span className={`relative z-10 ${slug === s.slug ? "text-accent-ink font-medium" : "text-ink"}`}>
                 {s.name}
               </span>
             </button>

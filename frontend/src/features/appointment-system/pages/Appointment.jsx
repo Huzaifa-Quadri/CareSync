@@ -138,19 +138,19 @@ const Appointment = () => {
                   <button
                     key={i}
                     onClick={() => setSlotIndex(i)}
-                    className="relative shrink-0 px-5 py-3 rounded-2xl text-center border border-line bg-surface min-w-[68px]"
+                    className={`relative shrink-0 px-5 py-3 rounded-2xl text-center border min-w-17 transition-colors ${slotIndex === i ? "border-transparent" : "border-line hover:bg-elevated"}`}
                   >
                     {slotIndex === i && (
                       <motion.span
                         layoutId="day-active"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        className="absolute inset-0 -z-10 rounded-2xl bg-ink"
+                        className="absolute inset-0 rounded-2xl bg-ink"
                       />
                     )}
-                    <p className={`text-[10px] font-mono uppercase tracking-widest ${slotIndex === i ? "text-canvas" : "text-muted"}`}>
+                    <p className={`relative z-10 text-[10px] font-mono uppercase tracking-widest ${slotIndex === i ? "text-canvas" : "text-muted"}`}>
                       {item[0] && daysOfWeek[item[0].datetime.getDay()]}
                     </p>
-                    <p className={`font-display text-2xl mt-1 ${slotIndex === i ? "text-canvas" : "text-ink"}`}>
+                    <p className={`relative z-10 font-display text-2xl mt-1 ${slotIndex === i ? "text-canvas" : "text-ink"}`}>
                       {item[0] && item[0].datetime.getDate()}
                     </p>
                   </button>

@@ -67,8 +67,8 @@ const AdminLogin = () => {
                   className="absolute inset-0 -z-10 rounded-full bg-ink"
                 />
               )}
-              <r.Icon size={14} className={role === r.id ? "text-canvas" : "text-muted"} />
-              <span className={role === r.id ? "text-canvas font-medium" : "text-ink"}>{r.label}</span>
+              <r.Icon size={14} className={`relative z-10 ${role === r.id ? "text-canvas" : "text-muted"}`} />
+              <span className={`relative z-10 ${role === r.id ? "text-canvas font-medium" : "text-ink"}`}>{r.label}</span>
             </button>
           ))}
         </div>
