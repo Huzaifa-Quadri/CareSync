@@ -3,6 +3,7 @@ import cors from "cors";
 import userRouter from "./features/user/user.routes.js";
 import doctorRouter from "./features/doctor/doctor.routes.js";
 import adminRouter from "./features/admin/admin.routes.js";
+import healthRouter from "./routes/health.routes.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -19,6 +20,8 @@ app.use(express.static("public"));
 app.get("/health", (req, res) => {
   res.json({ status: "ok", message: "Doctor Appointment API is running." });
 });
+
+app.use("/api/health", healthRouter);
 
 app.use("/api/admin", adminRouter);
 app.use("/api/doctor", doctorRouter);

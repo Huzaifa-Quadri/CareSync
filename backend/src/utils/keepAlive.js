@@ -13,12 +13,12 @@ export function startKeepAlive() {
     return;
   }
 
-  const url = process.env.BACKEND_URL || `http://localhost:${process.env.PORT || 4000}`;
+  const url = process.env.BACKEND_URL;
 
-  // if (!url) {
-  //   console.log("⚠️ Keep-alive skipped: BACKEND_URL not set");
-  //   return;
-  // }
+  if (!url) {
+    console.log("⚠️ Keep-alive skipped: BACKEND_URL not set");
+    return;
+  }
 
   const pingUrl = `${url}/api/health`;
 
