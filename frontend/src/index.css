@@ -213,26 +213,45 @@ html, body, .bento-tile, button, a, input, textarea, select, nav, aside, header,
 
 /* ============================================================
    CONTEXTUAL TEXT — when nested inside accent / ink backgrounds,
-   .text-muted, .text-ink, opacity-80 labels stay readable.
+   .text-muted, .text-ink labels stay readable.
+   :not([class*="bg-"]) excludes elements that own their own surface
+   (e.g. a bg-canvas button inside a bg-ink banner) so they keep
+   their own text/bg pairing intact.
    ============================================================ */
-.bg-accent .text-muted,
-.bg-accent .text-ink,
-.bg-accent [class*="text-muted"] { color: var(--accent-ink-muted); }
-.bg-accent2 .text-muted,
-.bg-accent2 .text-ink,
-.bg-accent2 [class*="text-muted"] { color: var(--accent2-ink-muted); }
-.bg-accent3 .text-muted,
-.bg-accent3 .text-ink,
-.bg-accent3 [class*="text-muted"] { color: var(--accent3-ink-muted); }
-.bg-ink .text-muted,
-.bg-ink .text-ink,
-.bg-ink [class*="text-muted"] { color: var(--ink-canvas-muted); }
+.bg-accent :not([class*="bg-"]).text-muted,
+.bg-accent :not([class*="bg-"]).text-ink,
+.bg-accent :not([class*="bg-"]) [class*="text-muted"] { color: var(--accent-ink-muted); }
+.bg-accent2 :not([class*="bg-"]).text-muted,
+.bg-accent2 :not([class*="bg-"]).text-ink,
+.bg-accent2 :not([class*="bg-"]) [class*="text-muted"] { color: var(--accent2-ink-muted); }
+.bg-accent3 :not([class*="bg-"]).text-muted,
+.bg-accent3 :not([class*="bg-"]).text-ink,
+.bg-accent3 :not([class*="bg-"]) [class*="text-muted"] { color: var(--accent3-ink-muted); }
+.bg-ink :not([class*="bg-"]).text-muted,
+.bg-ink :not([class*="bg-"]).text-ink,
+.bg-ink :not([class*="bg-"]) [class*="text-muted"] { color: var(--ink-canvas-muted); }
 
 /* Borders on accent tiles use translucent ink for visibility */
 .bg-accent .border-line,
 .bg-accent2 .border-line,
 .bg-accent3 .border-line,
 .bg-ink .border-line { border-color: color-mix(in srgb, currentColor 25%, transparent); }
+
+/* Form inputs inside accent tiles must always show base ink text, not the
+   inherited accent-ink color — otherwise light text on light bg-elevated. */
+.bg-accent input, .bg-accent select, .bg-accent textarea,
+.bg-accent2 input, .bg-accent2 select, .bg-accent2 textarea,
+.bg-accent3 input, .bg-accent3 select, .bg-accent3 textarea {
+  color: var(--fg-primary);
+}
+
+/* Accent-colored text inside an ink tile loses contrast in dark/sunset themes
+   because bg-ink becomes light (#F5F2E8). Map to the pre-tested accent-ink
+   counterpart which is always readable on ink backgrounds.
+   Same :not guard — skip elements with their own background. */
+.bg-ink :not([class*="bg-"]).text-accent  { color: var(--accent-ink); }
+.bg-ink :not([class*="bg-"]).text-accent2 { color: var(--accent2-ink); }
+.bg-ink :not([class*="bg-"]).text-accent3 { color: var(--accent3-ink); }
 
 /* Tabular numbers for stats */
 .tabular { font-variant-numeric: tabular-nums; }

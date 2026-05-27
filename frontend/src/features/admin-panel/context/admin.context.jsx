@@ -69,10 +69,34 @@ export const AdminContextProvider = ({ children }) => {
     }
   };
 
+  const toggleDoctorVisibility = async (docId) => {
+    try {
+      const { data } = await adminApi.adminToggleDoctorVisibility(docId, aToken);
+      if (data.success) {
+        toast.success(data.message);
+        getAllDoctors();
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to update visibility");
+    }
+  };
+
+  const deleteDoctor = async (docId) => {
+    try {
+      const { data } = await adminApi.adminDeleteDoctor(docId, aToken);
+      if (data.success) {
+        toast.success(data.message);
+        getAllDoctors();
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to delete doctor");
+    }
+  };
+
   const value = {
     aToken, setAToken, doctors, getAllDoctors, changeAvailability,
     appointments, setAppointments, getAllAppointments, cancelAppointment,
-    dashData, getDashData,
+    dashData, getDashData, toggleDoctorVisibility, deleteDoctor,
   };
   return <AdminContext.Provider value={value}>{children}</AdminContext.Provider>;
 };

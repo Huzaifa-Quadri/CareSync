@@ -6,7 +6,33 @@ import { AdminContext } from "../../context/admin.context";
 import * as adminApi from "../../service/admin.api";
 import { Bento } from "@shared/components/Bento";
 
-const specialities = ["General physician", "Gynecologist", "Dermatologist", "Pediatricians", "Neurologist", "Gastroenterologist"];
+const specialities = [
+  "General Physician",
+  "Gynecologist",
+  "Dermatologist",
+  "Pediatrician",
+  "Neurologist",
+  "Gastroenterologist",
+  "Cardiologist",
+  "Orthopedic Surgeon",
+  "Ophthalmologist",
+  "ENT Specialist",
+  "Psychiatrist",
+  "Pulmonologist",
+  "Endocrinologist",
+  "Oncologist",
+  "Urologist",
+  "Rheumatologist",
+  "Nephrologist",
+  "Hematologist",
+  "Allergist",
+  "Radiologist",
+  "Geriatrician",
+  "Plastic Surgeon",
+  "Vascular Surgeon",
+  "Sports Medicine",
+  "Dentist",
+];
 
 const Input = ({ label, ...props }) => (
   <label className="flex flex-col gap-1.5">
@@ -77,7 +103,7 @@ const AddDoctor = () => {
 
       <Bento.Grid cols={4}>
         {/* Image upload */}
-        <Bento.Tile size="2x2" accent="elevated" className="p-7 flex flex-col items-center justify-center text-center min-h-[280px]">
+        <Bento.Tile size="2x2" accent="elevated" className="p-7 flex flex-col items-center justify-center text-center min-h-70">
           <label htmlFor="doc-img" className="cursor-pointer">
             {docImg ? (
               <img
@@ -114,11 +140,12 @@ const AddDoctor = () => {
         <Bento.Tile size="1x1" accent="accent3" className="p-5 flex flex-col gap-2">
           <Select label="Experience" value={form.experience} onChange={set("experience")} required>
             <option value="">Years</option>
-            {[1,2,3,4,5,6,7,8,9,10].map((y) => <option key={y} value={`${y} ${y === 1 ? "year" : "years"}`}>{y}</option>)}
+            {[1,2,3,4,5,6,7,8,9].map((y) => <option key={y} value={`${y} ${y === 1 ? "year" : "years"}`}>{y} {y === 1 ? "year" : "years"}</option>)}
+            {[10,15,20,25,30,35,40,45,50,55,60].map((y) => <option key={y} value={`${y}+ years`}>{y}+ years</option>)}
           </Select>
         </Bento.Tile>
         <Bento.Tile size="1x1" accent="accent2" className="p-5 flex flex-col gap-2">
-          <Input label="Fee ($)" type="number" value={form.fees} onChange={set("fees")} required />
+          <Input label="Fee (₹)" type="number" value={form.fees} onChange={set("fees")} required />
         </Bento.Tile>
 
         <Bento.Tile size="2x1" className="p-5 flex flex-col gap-2">

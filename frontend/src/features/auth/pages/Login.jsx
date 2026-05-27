@@ -80,7 +80,7 @@ const Login = () => {
               key={t.id}
               type="button"
               onClick={() => setTab(t.id)}
-              className="relative px-5 py-2 rounded-full text-sm"
+              className="relative isolate px-5 py-2 rounded-full text-sm"
             >
               {tab === t.id && (
                 <motion.span

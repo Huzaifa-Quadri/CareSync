@@ -86,13 +86,13 @@ const DoctorDashboard = () => {
                   <div className="flex gap-1">
                     <button
                       onClick={() => cancelAppointment(item._id)}
-                      className="h-8 w-8 rounded-full grid place-items-center bg-elevated hover:bg-accent2 hover:text-accent2-ink"
+                      className="h-8 w-8 rounded-full grid place-items-center bg-elevated hover:bg-accent2 hover:text-(--accent2-ink) transition-colors"
                     >
                       <X size={14} />
                     </button>
                     <button
                       onClick={() => completeAppointment(item._id)}
-                      className="h-8 w-8 rounded-full grid place-items-center bg-elevated hover:bg-accent3 hover:text-accent3-ink"
+                      className="h-8 w-8 rounded-full grid place-items-center bg-elevated hover:bg-accent3 hover:text-(--accent3-ink) transition-colors"
                     >
                       <Check size={14} />
                     </button>

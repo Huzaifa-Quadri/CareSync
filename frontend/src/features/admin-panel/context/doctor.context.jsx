@@ -69,10 +69,35 @@ export const DoctorContextProvider = ({ children }) => {
     }
   };
 
+  const toggleVisibility = async () => {
+    try {
+      const { data } = await doctorPanelApi.toggleDoctorVisibility(dToken);
+      if (data.success) {
+        toast.success(data.message);
+        getProfileData();
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to update visibility");
+    }
+  };
+
+  const deleteSelf = async () => {
+    try {
+      const { data } = await doctorPanelApi.deleteDoctorSelf(dToken);
+      if (data.success) {
+        toast.success(data.message);
+        localStorage.removeItem("dToken");
+        setDToken("");
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to delete account");
+    }
+  };
+
   const value = {
     dToken, setDToken, appointments, getAppointments,
     completeAppointment, cancelAppointment, dashData, getDashData,
-    profileData, setProfileData, getProfileData,
+    profileData, setProfileData, getProfileData, toggleVisibility, deleteSelf,
   };
   return <DoctorContext.Provider value={value}>{children}</DoctorContext.Provider>;
 };

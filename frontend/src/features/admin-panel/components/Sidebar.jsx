@@ -42,7 +42,7 @@ const Sidebar = ({ role = "admin" }) => {
         {links.map(({ to, Icon, label }) => (
           <NavLink key={to} to={to} className="block">
             {({ isActive }) => (
-              <div className="relative flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm">
+              <div className="relative isolate flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm">
                 {isActive && (
                   <motion.span
                     layoutId={`sidebar-${role}-active`}

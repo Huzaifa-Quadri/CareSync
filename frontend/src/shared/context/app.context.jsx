@@ -3,7 +3,7 @@ import { createContext } from "react";
 export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
-  const currencySymbol = "$";
+  const currencySymbol = "₹";
 
   const calculateAge = (dob) => {
     const today = new Date();

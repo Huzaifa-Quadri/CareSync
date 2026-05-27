@@ -58,7 +58,7 @@ const AdminLogin = () => {
               key={r.id}
               type="button"
               onClick={() => setRole(r.id)}
-              className="relative inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm"
+              className="relative isolate inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm"
             >
               {role === r.id && (
                 <motion.span
