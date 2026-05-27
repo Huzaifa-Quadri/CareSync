@@ -19,3 +19,9 @@ export const fetchDoctorProfile = (dToken) =>
 
 export const updateDoctorProfile = (updateData, dToken) =>
   axios.post(`${doctorBase}/update-profile`, updateData, { headers: { dToken } });
+
+export const toggleDoctorVisibility = (dToken) =>
+  axios.post(`${doctorBase}/toggle-visibility`, {}, { headers: { dToken } });
+
+export const deleteDoctorSelf = (dToken) =>
+  axios.delete(`${doctorBase}/delete-account`, { headers: { dToken } });

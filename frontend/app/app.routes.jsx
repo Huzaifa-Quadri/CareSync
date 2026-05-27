@@ -24,6 +24,7 @@ import Dashboard from "@features/admin-panel/pages/admin/Dashboard";
 import AllAppointments from "@features/admin-panel/pages/admin/AllAppointments";
 import AddDoctor from "@features/admin-panel/pages/admin/AddDoctor";
 import DoctorsList from "@features/admin-panel/pages/admin/DoctorsList";
+import DoctorDetail from "@features/admin-panel/pages/admin/DoctorDetail";
 import DoctorDashboard from "@features/admin-panel/pages/doctor/DoctorDashboard";
 import DoctorAppointments from "@features/admin-panel/pages/doctor/DoctorAppointments";
 import DoctorProfile from "@features/admin-panel/pages/doctor/DoctorProfile";
@@ -67,6 +68,7 @@ export const AppRoutes = () => {
           <Route path="all-appointments" element={<AllAppointments />} />
           <Route path="add-doctor" element={<AddDoctor />} />
           <Route path="doctors-list" element={<DoctorsList />} />
+          <Route path="doctors-list/:docId" element={<DoctorDetail />} />
         </Route>
 
         <Route path="/doctor" element={dToken ? <DoctorLayout /> : <Navigate to="/admin-login" />}>

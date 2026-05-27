@@ -8,6 +8,8 @@ import {
   doctorDashboard,
   doctorProfile,
   updateDoctorProfile,
+  toggleDoctorVisibility,
+  deleteSelf,
 } from "./doctor.controller.js";
 import authDoctor from "../../middlewares/auth.doctor.js";
 
@@ -21,5 +23,7 @@ doctorRouter.post("/cancel-appointment", authDoctor, appointmentCancel);
 doctorRouter.get("/dashboard", authDoctor, doctorDashboard);
 doctorRouter.get("/profile", authDoctor, doctorProfile);
 doctorRouter.post("/update-profile", authDoctor, updateDoctorProfile);
+doctorRouter.post("/toggle-visibility", authDoctor, toggleDoctorVisibility);
+doctorRouter.delete("/delete-account", authDoctor, deleteSelf);
 
 export default doctorRouter;

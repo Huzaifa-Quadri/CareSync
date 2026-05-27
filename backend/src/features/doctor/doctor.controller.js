@@ -19,8 +19,31 @@ const changeAvailability = async (req, res) => {
 
 const doctorList = async (req, res) => {
   try {
-    const doctors = await doctorModel.find({}).select(["-password", "-email"]);
+    const doctors = await doctorModel.find({ isHidden: { $ne: true } }).select(["-password", "-email"]);
     res.status(200).json({ success: true, doctors });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+const toggleDoctorVisibility = async (req, res) => {
+  try {
+    const { docId } = req.user;
+    const doc = await doctorModel.findById(docId);
+    if (!doc) return res.status(404).json({ success: false, message: "Doctor not found." });
+    await doctorModel.findByIdAndUpdate(docId, { isHidden: !doc.isHidden });
+    res.status(200).json({ success: true, message: doc.isHidden ? "Profile visible." : "Profile hidden." });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+const deleteSelf = async (req, res) => {
+  try {
+    const { docId } = req.user;
+    await appointmentModel.updateMany({ docId }, { cancelled: true });
+    await doctorModel.findByIdAndDelete(docId);
+    res.status(200).json({ success: true, message: "Account deleted." });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
@@ -174,4 +197,6 @@ export {
   doctorDashboard,
   doctorProfile,
   updateDoctorProfile,
+  toggleDoctorVisibility,
+  deleteSelf,
 };

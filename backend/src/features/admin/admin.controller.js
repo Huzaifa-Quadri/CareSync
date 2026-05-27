@@ -149,6 +149,31 @@ const adminDashboard = async (req, res) => {
   }
 };
 
+const toggleAdminDoctorVisibility = async (req, res) => {
+  try {
+    const { docId } = req.body;
+    const doc = await doctorModel.findById(docId);
+    if (!doc) return res.status(404).json({ success: false, message: "Doctor not found." });
+    await doctorModel.findByIdAndUpdate(docId, { isHidden: !doc.isHidden });
+    res.status(200).json({ success: true, message: doc.isHidden ? "Profile visible." : "Profile hidden." });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+const deleteDoctor = async (req, res) => {
+  try {
+    const { docId } = req.body;
+    const doc = await doctorModel.findById(docId);
+    if (!doc) return res.status(404).json({ success: false, message: "Doctor not found." });
+    await appointmentModel.updateMany({ docId }, { cancelled: true });
+    await doctorModel.findByIdAndDelete(docId);
+    res.status(200).json({ success: true, message: "Doctor deleted." });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 export {
   addDoctor,
   loginAdmin,
@@ -157,4 +182,6 @@ export {
   appointmentCancelAdmin,
   adminDashboard,
   changeAvailability,
+  toggleAdminDoctorVisibility,
+  deleteDoctor,
 };

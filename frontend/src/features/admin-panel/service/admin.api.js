@@ -19,3 +19,9 @@ export const cancelAdminAppointment = (appointmentId, aToken) =>
 
 export const fetchAdminDashboard = (aToken) =>
   axios.get(`${adminBase}/dashboard`, { headers: { aToken } });
+
+export const adminToggleDoctorVisibility = (docId, aToken) =>
+  axios.post(`${adminBase}/toggle-doctor-visibility`, { docId }, { headers: { aToken } });
+
+export const adminDeleteDoctor = (docId, aToken) =>
+  axios.delete(`${adminBase}/delete-doctor`, { data: { docId }, headers: { aToken } });
